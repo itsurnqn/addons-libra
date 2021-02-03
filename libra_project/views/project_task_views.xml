@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_task_form" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="task_estandar_id"
+                       option="{'no_create_edit': False}"/>
+            </field>
+            <xpath expr="//page[1]" position="before">
+                <page string="Sub tareas">
+                    <field name="subtask_ids2">
+                        <tree create="false" edit="true" delete="true" editable="top">
+                            <field name="task_estandar_id" readonly="True"/>
+                            <field name="tipo_tarea" readonly="True"/>
+                            <field name="completada"/>
+                            <field name="observaciones" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- <record id="project_task_search" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="complexity_level_id"/>
+            </field>
+            <group expand="0">
+                <filter name="complexity_level_id" string="Nivel de complejidad" context="{'group_by':'complexity_level_id'}"/>
+            </group>
+        </field>
+    </record> -->
+</odoo>
