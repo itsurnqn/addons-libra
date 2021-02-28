@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_project_task"
+        string="Orden de servicio"
+        model="project.task"
+        report_type="qweb-pdf"
+        file="libra_project.report_projecttask"
+        name="libra_project.report_projecttask"
+    />
+</odoo>

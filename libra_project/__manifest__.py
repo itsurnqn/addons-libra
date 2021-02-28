@@ -15,13 +15,17 @@
     "development_status": "Production/Stable",
     "maintainers": ["juanpgarza"],
     'depends': [
-        'project'
+        'project','sale','sale_timesheet'
     ],
     "data": [
-        'security/ir.model.access.csv',
+        'report/report.xml',
+        'report/templates.xml',        
+        'wizards/import_task_product_views.xml',
+        'views/product_template_views.xml',
         'views/project_task_views.xml',
         'views/project_task_estandar_views.xml',
-        'data/libra_project_data.xml',
+        'security/ir.model.access.csv',
+        # 'data/libra_project_data.xml',
     ],
     'installable': True,
 }

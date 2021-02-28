@@ -7,5 +7,35 @@
             <field name="name">Cierre de ventas</field>
         </record>
 
+        <record forcecreate="True" id="project_task_estandar_ag00" model="project.task.estandar">
+            <field name="codigo">AG00</field>
+            <field name="name">Llamado inicial</field>
+        </record>
+
+        <record forcecreate="True" id="project_task_estandar_ag01" model="project.task.estandar">
+            <field name="codigo">AG01</field>
+            <field name="name">Marcado de obra</field>
+        </record>
+
+        <record forcecreate="True" id="project_task_estandar_ag05" model="project.task.estandar">
+            <field name="codigo">AG05</field>
+            <field name="name">Proyecto ejecutable</field>
+        </record>
+
+        <record forcecreate="True" id="project_task_estandar_ag20" model="project.task.estandar">
+            <field name="codigo">AG20</field>
+            <field name="name">Relevamiento previo cañería radiadores</field>
+        </record>
+
+        <record forcecreate="True" id="project_task_estandar_ag1" model="project.task.estandar">
+            <field name="codigo">AG 1</field>
+            <field name="name">Tendido cañeria radiadores</field>
+        </record>
+
+        <record forcecreate="True" id="project_task_estandar_ag22" model="project.task.estandar">
+            <field name="codigo">AG22</field>
+            <field name="name">Conforme a obra</field>
+        </record>
+
     </data>
 </odoo>

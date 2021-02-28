@@ -19,6 +19,10 @@ class ProjectTaskEstandar(models.Model):
                             ],'Tipo')
 
 
+    descripcion = fields.Char(required=True,
+                        default=".",
+                        string="Descripcion")
+
     # completada = fields.Boolean(string="Completada?",
     #                             default=False)
 

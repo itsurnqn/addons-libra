@@ -75,6 +75,7 @@
         <field name="arch" type="xml">
             <tree>                
                 <field name="name"/>
+                <field name="descripcion"/>
                 <field name="tipo"/>
                 <field name="estandar_id"/>
             </tree>

@@ -13,6 +13,7 @@ class ProjectTaskSubtask(models.Model):
                             string="Tarea")
 
     task_estandar_id = fields.Many2one(comodel_name="project.task.estandar.task",
+                                        ondelete="restrict",
                                         string="tarea")
 
     tipo_tarea = fields.Selection(related="task_estandar_id.tipo")
@@ -22,3 +23,5 @@ class ProjectTaskSubtask(models.Model):
 
     observaciones = fields.Char(required=False,
                         string="Observaciones")
+
+    descripcion = fields.Char(related="task_estandar_id.descripcion",string="Descripción")

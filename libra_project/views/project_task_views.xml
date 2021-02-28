@@ -9,7 +9,8 @@
                 <field name="task_estandar_id"
                        option="{'no_create_edit': False}"/>
             </field>
-            <xpath expr="//page[1]" position="before">
+            <!-- <xpath expr="//page[1]" position="after"> -->
+            <xpath expr="//notebook" position="inside">
                 <page string="Sub tareas">
                     <field name="subtask_ids2">
                         <tree create="false" edit="true" delete="true" editable="top">
@@ -17,10 +18,47 @@
                             <field name="tipo_tarea" readonly="True"/>
                             <field name="completada"/>
                             <field name="observaciones" />
+                            <field name="descripcion" readonly="True"/>
                         </tree>
                     </field>
                 </page>
+                            
+                <page string="Servicios">
+                    <field name="service_ids">
+                        <tree create="false" edit="true" delete="false" editable="top">
+                            <field name="product_template_id" readonly="True"/>
+                            <!-- <field name="default_code" readonly="True"/> -->
+                            <field name="cantidad_pedida" readonly="True"/>
+                            <field name="cantidad_ejecutada" />
+                        </tree>
+                    </field>
+                </page>            
+
+                <!-- <page string="Productos">
+                    <field name="product_ids">
+                        <tree create="true" edit="true" delete="false" editable="top">
+                            <field name="product_template_id"/>
+                            <field name="default_code" readonly="True"/>
+                            <field name="cantidad_pedida"/>
+                        </tree>
+                    </field>
+                </page>                 -->
             </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="project_task_code_tree_view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="attributes">
+                <attribute name="widget">handle</attribute>
+                <attribute name="invisible">0</attribute>
+            </field>
+
+            <field name="user_id" position="after">
+                <field name="task_estandar_id"/>
+            </field>
         </field>
     </record>
 

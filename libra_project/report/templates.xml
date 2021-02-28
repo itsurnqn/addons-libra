@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="report_projecttask">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <div class="page" style="font-size: 10pt;font-family:Helvetica,Verdana,Arial,sans,Lucida Grande,Calibri;">
+                    
+                    <div class="oe_structure"/>
+
+                    <hr/>
+                    <!-- Linea 1 -->                    
+                    <div class="row mt4 mb4">
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Tarea N°</strong>:
+                            <span t-field="o.id"/>-<span t-field="o.name"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Fecha</strong>:
+                            <span t-field="o.date_deadline"/>
+                        </div>
+                    </div>
+                    <hr/>
+                    <!-- Linea 2 -->
+                    <div class="row mt4 mb4">
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Cliente</strong>:
+                            <span t-field="o.project_id.partner_id"/>-<span t-field="o.project_id.partner_id.mobile"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Proyecto</strong>:
+                            <span t-field="o.project_id.name"/>
+                        </div>
+                    </div>
+
+                    <!-- Linea 3 -->
+                    <div class="row mt4 mb4">
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Fecha</strong>:
+                            <span t-field="o.date_deadline"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Dirección de entrega</strong>:
+                            <span t-field="o.sale_line_id.order_id.partner_shipping_id"/>
+                        </div>
+                    </div>
+                    <hr/>
+                    <!-- Linea 4 -->
+                    <div class="row mt4 mb4">
+          				<t t-foreach="o.project_id.assignment_ids" t-as="line">                      
+                            <div class="col-auto mw-100 mb-4">
+                                <strong><span t-field="line.role_id.name"/></strong>: <span t-field="line.user_id.name"/>-<span t-field="line.user_id.partner_id.mobile"/><br/>
+                            </div>
+                        </t>
+          			</div>
+                    <hr/>
+
+                    <!-- Linea 5 -->
+                    <div class="row mt4 mb4">
+                        <div class="col-auto mw-100 mb-6">
+                            <strong>Estandar</strong>:
+                            <span t-field="o.task_estandar_id.name"/>
+                        </div>
+                    </div>                    
+                    <hr/>
+
+                    <h5>Servicios</h5>
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">
+                                    <strong>Código</strong>
+                                </th>
+                                <th class="text-left">
+                                    <strong>Nombre</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Cant. pedida</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Cant. ejecutada</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.service_ids" t-as="line">
+                                <td class="text-left">
+                                    <span t-field="line.default_code"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="line.product_template_id.name"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.cantidad_pedida"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="line.cantidad_ejecutada"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <t t-foreach="o.subtask_ids2" t-as="line">
+                        <t t-if="line.tipo_tarea=='tecnico'">
+                            <t t-set="tecnico" t-value="1"/>
+                            HOLA
+                        </t>
+                    </t>
+
+                    <t t-if="tecnico == 1">
+                        <h5>Tareas técnico</h5>
+                    </t>
+
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">
+                                    <strong>Descripción</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Completada</strong>
+                                </th>
+                                <th class="text-left">
+                                    <strong>Observaciones</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.subtask_ids2" t-as="line">
+                                <t t-if="line.tipo_tarea=='tecnico'">
+                                    <td class="text-left">
+                                        <span t-field="line.task_estandar_id.name"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.completada"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.observaciones"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5>Tareas de coordinación</h5>
+                    <table class="table table-sm o_main_table">
+                        <thead>
+                            <tr>
+                                <th class="text-left">
+                                    <strong>Descripción</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Completada</strong>
+                                </th>
+                                <th class="text-left">
+                                    <strong>Observaciones</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.subtask_ids2" t-as="line">
+                                <t t-if="line.tipo_tarea=='coordinacion'">
+                                    <td class="text-left">
+                                        <span t-field="line.task_estandar_id.name"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.completada"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-field="line.observaciones"/>
+                                    </td>
+                                </t>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <strong>Firma y aclaración Gallucci</strong>
+                        </div>
+                        <div class="col-6">
+                            <strong>Firma y aclaración Cliente</strong>                  
+                        </div>
+                    </div>
+
+                </div>
+            </t>        
+        </t>
+    </t>        
+</template>
+
+
+</odoo>
