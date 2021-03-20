@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-auto mw-100 mb-6">
                             <strong>Dirección de entrega</strong>:
-                            <span t-field="o.sale_line_id.order_id.partner_shipping_id"/>
+                            <span t-field="o.sale_line_id.order_id.partner_shipping_id.street"/>
                         </div>
                     </div>
                     <hr/>
@@ -102,17 +102,7 @@
                         </tbody>
                     </table>
 
-                    <t t-foreach="o.subtask_ids2" t-as="line">
-                        <t t-if="line.tipo_tarea=='tecnico'">
-                            <t t-set="tecnico" t-value="1"/>
-                            HOLA
-                        </t>
-                    </t>
-
-                    <t t-if="tecnico == 1">
-                        <h5>Tareas técnico</h5>
-                    </t>
-
+                    <h5>Tareas técnico</h5>
                     <table class="table table-sm o_main_table">
                         <thead>
                             <tr>
