@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="importar_productos" model="ir.ui.view">
-        <!-- <field name="name">Actualización de precios</field> -->
+        <field name="name">import.task.product.wizard.form</field>
         <field name="model">import.task.product.wizard</field>
         <field name="arch" type="xml">
             <form>
@@ -17,14 +17,23 @@
             </form>
         </field>
     </record>
-    
-    <act_window id="action_import_task_product_wizard"
+            
+    <!-- <act_window id="action_import_task_product_wizard"
             name="Importación de productos"
             src_model="project.project"
             res_model="import.task.product.wizard"
             view_mode="form"
             target="new"
             multi="False"
-    />
+    /> -->
+
+<record id="action_import_task_product_wizard" model="ir.actions.act_window">
+  <field name="name">Importación de productos</field>
+  <field name="res_model">import.task.product.wizard</field>
+  <field name="view_mode">form</field>
+  <field name="view_id" ref="importar_productos"/>
+  <field name="target">new</field>
+  <field name="binding_model_id" ref="project.model_project_project" />
+</record>
 
 </odoo>

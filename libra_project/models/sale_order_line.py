@@ -7,7 +7,6 @@ from odoo import fields, models, api
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
     def _timesheet_create_project(self):
         res = super(SaleOrderLine,self)._timesheet_create_project()
 
@@ -32,7 +31,6 @@ class SaleOrderLine(models.Model):
                 }
                 servicio_tarea.create(val)
 
-    # @api.multi
     # def _timesheet_create_project(self):
     #     """ Generate project for the given so line, and link it.
     #         :param project: record of project.project in which the task should be created

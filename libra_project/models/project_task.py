@@ -59,7 +59,6 @@ class ProjectTask(models.Model):
 
         return res
 
-    @api.multi
     def write(self,values):
         super(ProjectTask,self).write(values)
         # import pdb; pdb.set_trace()
