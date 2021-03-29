@@ -95,9 +95,9 @@
 <record id="action_estandar_task_tree" model="ir.actions.act_window">
   <field name="name">sub tareas</field>
   <field name="res_model">project.task.estandar.task</field>
-  <field name="view_mode">form</field>
+  <field name="view_mode">tree</field>
   <field name="view_id" ref="project_task_estandar_list_view"/>
-  <field name="target">new</field>
+  <field name="target">current</field>
   <field name="domain">[('estandar_id', '=', active_id)]</field>
 </record>
 
